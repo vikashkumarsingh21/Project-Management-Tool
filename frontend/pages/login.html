@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log in — TaskFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="stylesheet" href="../css/auth.css" />
+</head>
+<body class="auth-body">
+
+  <div class="auth-layout">
+
+    <!-- ─── LEFT BRANDING PANEL ─── -->
+    <aside class="auth-panel">
+      <div class="auth-panel-inner">
+
+        <!-- Logo -->
+        <a href="../index.html" class="logo auth-logo">
+          <span class="logo-mark">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="3" width="8" height="8" rx="2" fill="#fff"/>
+              <rect x="13" y="3" width="8" height="8" rx="2" fill="#fff" opacity="0.45"/>
+              <rect x="3" y="13" width="8" height="8" rx="2" fill="#fff" opacity="0.45"/>
+              <rect x="13" y="13" width="8" height="8" rx="2" fill="#fff"/>
+            </svg>
+          </span>
+          <span class="logo-text" style="color:#fff;">TaskFlow</span>
+        </a>
+
+        <!-- Central copy -->
+        <div class="panel-body">
+          <div class="panel-eyebrow">Trusted by 15,000+ teams</div>
+          <h1 class="panel-headline">Everything your team needs to ship.</h1>
+          <p class="panel-sub">Sprints, tasks, reviews, and analytics — in one place. No more tab-switching, no more missed deadlines.</p>
+
+          <!-- Testimonial -->
+          <div class="panel-testimonial">
+            <div class="testimonial-quote">
+              "TaskFlow cut our sprint planning time by 60%. It's the only tool every engineer actually opens every day."
+            </div>
+            <div class="testimonial-author">
+              <div class="author-avatar">SR</div>
+              <div class="author-info">
+                <div class="author-name">Sarah Reynolds</div>
+                <div class="author-role">VP Engineering · Corewave</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats row -->
+        <div class="panel-stats">
+          <div class="panel-stat">
+            <span class="stat-value">15k+</span>
+            <span class="stat-label">Teams</span>
+          </div>
+          <div class="panel-stat-divider"></div>
+          <div class="panel-stat">
+            <span class="stat-value">2M+</span>
+            <span class="stat-label">Tasks shipped</span>
+          </div>
+          <div class="panel-stat-divider"></div>
+          <div class="panel-stat">
+            <span class="stat-value">99.9%</span>
+            <span class="stat-label">Uptime</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Decorative grid dots -->
+      <div class="panel-decoration" aria-hidden="true">
+        <svg width="220" height="220" viewBox="0 0 220 220" fill="none">
+          <defs>
+            <pattern id="dots" x="0" y="0" width="22" height="22" patternUnits="userSpaceOnUse">
+              <circle cx="1.5" cy="1.5" r="1.5" fill="rgba(255,255,255,0.12)"/>
+            </pattern>
+          </defs>
+          <rect width="220" height="220" fill="url(#dots)"/>
+        </svg>
+      </div>
+    </aside>
+
+    <!-- ─── RIGHT FORM PANEL ─── -->
+    <main class="auth-form-panel">
+      <div class="auth-form-wrap">
+
+        <!-- Mobile logo (shown only on small screens) -->
+        <a href="../index.html" class="logo auth-logo-mobile">
+          <span class="logo-mark">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="3" width="8" height="8" rx="2" fill="#2563EB"/>
+              <rect x="13" y="3" width="8" height="8" rx="2" fill="#2563EB" opacity="0.5"/>
+              <rect x="3" y="13" width="8" height="8" rx="2" fill="#2563EB" opacity="0.5"/>
+              <rect x="13" y="13" width="8" height="8" rx="2" fill="#2563EB"/>
+            </svg>
+          </span>
+          <span class="logo-text">TaskFlow</span>
+        </a>
+
+        <div class="form-header">
+          <h2 class="form-title">Welcome back</h2>
+          <p class="form-subtitle">Log in to your workspace to continue.</p>
+        </div>
+
+        <!-- Google SSO -->
+        <button class="btn-google" id="googleBtn" type="button">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z" fill="#4285F4"/>
+            <path d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.258c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 009 18z" fill="#34A853"/>
+            <path d="M3.964 10.707A5.41 5.41 0 013.682 9c0-.593.102-1.17.282-1.707V4.961H.957A8.996 8.996 0 000 9c0 1.452.348 2.827.957 4.039l3.007-2.332z" fill="#FBBC05"/>
+            <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 00.957 4.961L3.964 7.293C4.672 5.166 6.656 3.58 9 3.58z" fill="#EA4335"/>
+          </svg>
+          Continue with Google
+        </button>
+
+        <!-- Divider -->
+        <div class="auth-divider">
+          <span>or sign in with email</span>
+        </div>
+
+        <!-- Login Form -->
+        <form class="auth-form" id="loginForm" novalidate>
+
+          <!-- Email -->
+          <div class="form-group" id="group-email">
+            <label class="form-label" for="email">Work email</label>
+            <div class="input-wrap">
+              <span class="input-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M2 4a1 1 0 011-1h10a1 1 0 011 1v8a1 1 0 01-1 1H3a1 1 0 01-1-1V4z" stroke="#9CA3AF" stroke-width="1.25"/>
+                  <path d="M2 4.5l6 4 6-4" stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-input has-icon"
+                placeholder="you@company.com"
+                autocomplete="email"
+                inputmode="email"
+              />
+            </div>
+            <span class="form-error" id="error-email" role="alert"></span>
+          </div>
+
+          <!-- Password -->
+          <div class="form-group" id="group-password">
+            <div class="label-row">
+              <label class="form-label" for="password">Password</label>
+              <a href="#" class="forgot-link" id="forgotLink">Forgot password?</a>
+            </div>
+            <div class="input-wrap">
+              <span class="input-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <rect x="3" y="7" width="10" height="8" rx="1.5" stroke="#9CA3AF" stroke-width="1.25"/>
+                  <path d="M5.5 7V5a2.5 2.5 0 015 0v2" stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                class="form-input has-icon has-icon-right"
+                placeholder="Enter your password"
+                autocomplete="current-password"
+              />
+              <button type="button" class="toggle-password" id="togglePassword" aria-label="Show password">
+                <svg class="eye-icon eye-show" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z" stroke="#9CA3AF" stroke-width="1.25"/>
+                  <circle cx="8" cy="8" r="2" stroke="#9CA3AF" stroke-width="1.25"/>
+                </svg>
+                <svg class="eye-icon eye-hide" width="16" height="16" viewBox="0 0 16 16" fill="none" style="display:none">
+                  <path d="M13.5 2.5l-11 11M6.03 6.1A2 2 0 009.9 9.97M4.58 4.64C2.94 5.7 1.6 7.6 1 8c.76 1.26 3.44 5 7 5a7.2 7.2 0 003.41-.87M6.76 3.1A7.4 7.4 0 018 3c3.56 0 6.24 3.74 7 5-.38.63-1.1 1.72-2.16 2.66" stroke="#9CA3AF" stroke-width="1.25" stroke-linecap="round"/>
+                </svg>
+              </button>
+            </div>
+            <span class="form-error" id="error-password" role="alert"></span>
+          </div>
+
+          <!-- Remember me -->
+          <div class="form-check">
+            <label class="check-label">
+              <input type="checkbox" id="remember" name="remember" class="check-input" />
+              <span class="check-custom"></span>
+              <span class="check-text">Remember me for 30 days</span>
+            </label>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="btn btn-primary btn-auth" id="submitBtn">
+            <span class="btn-text">Log in</span>
+            <span class="btn-spinner" id="btnSpinner" aria-hidden="true"></span>
+          </button>
+
+          <!-- Global error -->
+          <div class="auth-alert auth-alert-error" id="globalError" role="alert" style="display:none">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.4"/><path d="M8 5v3.5M8 10.5v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span id="globalErrorText">Invalid email or password. Please try again.</span>
+          </div>
+
+        </form>
+
+        <!-- Register link -->
+        <p class="auth-switch">
+          Don't have an account?
+          <a href="register.html">Create one free</a>
+        </p>
+
+        <!-- Security note -->
+        <div class="auth-security">
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+            <path d="M7 1L2 3.5V7c0 2.76 2.13 5.24 5 5.9C9.87 12.24 12 9.76 12 7V3.5L7 1z" stroke="#9CA3AF" stroke-width="1.2" stroke-linejoin="round"/>
+            <path d="M4.5 7l1.75 1.75 3-3" stroke="#9CA3AF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Protected by 256-bit TLS encryption</span>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- FORGOT PASSWORD MODAL -->
+  <div class="modal-backdrop" id="forgotModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" style="display:none">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <rect width="22" height="22" rx="6" fill="var(--primary-light)"/>
+            <path d="M11 6v6M11 14.5v.5" stroke="var(--primary)" stroke-width="1.75" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <h3 class="modal-title" id="modalTitle">Reset your password</h3>
+          <p class="modal-desc">We'll send a reset link to your email address.</p>
+        </div>
+        <button class="modal-close" id="modalClose" aria-label="Close">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 3l10 10M13 3L3 13" stroke="#6B7280" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+      <form id="resetForm" novalidate>
+        <div class="form-group" id="group-reset-email">
+          <label class="form-label" for="resetEmail">Email address</label>
+          <input type="email" id="resetEmail" class="form-input" placeholder="you@company.com" autocomplete="email" />
+          <span class="form-error" id="error-reset-email" role="alert"></span>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn-outline" id="cancelReset">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="resetSubmitBtn">
+            <span class="btn-text">Send reset link</span>
+            <span class="btn-spinner" id="resetSpinner" aria-hidden="true"></span>
+          </button>
+        </div>
+      </form>
+
+      <div class="reset-success" id="resetSuccess" style="display:none">
+        <div class="success-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="15" stroke="#22C55E" stroke-width="1.5"/><path d="M10 16.5l4 4 8-8" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="success-title">Check your inbox</div>
+        <div class="success-body">We sent a reset link to <strong id="resetEmailDisplay"></strong>. It expires in 15 minutes.</div>
+        <button class="btn btn-primary" id="closeSuccessModal">Back to log in</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/auth.js"></script>
+</body>
+</html>
