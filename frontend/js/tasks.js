@@ -1089,3 +1089,167 @@ function resetFilters() {
 
 // Boot
 document.addEventListener('DOMContentLoaded', init);
+
+
+/**
+ * TaskFlow Design System — Enterprise Task Architecture Engine
+ */
+document.addEventListener('DOMContentLoaded', () => {
+
+  // --- Core Element Mappings ---
+  const taskStatusSelect = document.getElementById('taskStatusSelect');
+  const progressFillBar = document.getElementById('progressFillBar');
+  const progressPctText = document.getElementById('progressPctText');
+  const newCommentInput = document.getElementById('newCommentInput');
+  const submitCommentBtn = document.getElementById('submitCommentBtn');
+  const activityTimeline = document.getElementById('activityTimeline');
+  const toggleWatchBtn = document.getElementById('toggleWatchBtn');
+
+  // Action Buttons
+  const editTaskBtn = document.getElementById('editTaskBtn');
+  const deleteTaskBtn = document.getElementById('deleteTaskBtn');
+
+  // --- Progress Mapping Definition Engine ---
+  const statusProgressValueMap = {
+    todo: { pct: 0, text: "0% Complete" },
+    progress: { pct: 50, text: "50% Complete" },
+    review: { pct: 85, text: "85% Component Review" },
+    completed: { pct: 100, text: "100% Resolved" }
+  };
+
+  if (taskStatusSelect) {
+    taskStatusSelect.addEventListener('change', (e) => {
+      const activeStatus = e.target.value;
+      const metrics = statusProgressValueMap[activeStatus];
+      
+      if (metrics !== undefined) {
+        // Sync layout view elements
+        progressFillBar.style.width = `${metrics.pct}%`;
+        progressPctText.textContent = metrics.text;
+        
+        // Push a log tracking notification element downstream to the feed stack
+        const statusLabelText = taskStatusSelect.options[taskStatusSelect.selectedIndex].text;
+        injectSystemTimelineLog(`changed status pipeline position to <strong>${statusLabelText}</strong>`);
+      }
+    });
+  }
+
+  // --- Interactive Comments Generator Engine ---
+  if (submitCommentBtn && newCommentInput) {
+    submitCommentBtn.addEventListener('click', () => {
+      const commentMessageText = newCommentInput.value.trim();
+      
+      if (!commentMessageText) {
+        alert('Please supply an activity tracking note description before transmission.');
+        return;
+      }
+
+      // Construct a new comment layout element
+      const commentRowNode = document.createElement('div');
+      commentRowNode.className = 'timeline-event-row type-comment';
+      
+      commentRowNode.innerHTML = `
+        <div class="timeline-avatar-space">
+          <div class="user-avatar-node">AD</div>
+        </div>
+        <div class="timeline-body-content">
+          <div class="event-meta-line">
+            <span class="event-actor-name">Alex Dawson</span>
+            <span class="event-timestamp-label">Just now</span>
+          </div>
+          <div class="comment-bubble-text">
+            ${escapeHtmlEntities(commentMessageText)}
+          </div>
+        </div>
+      `;
+
+      // Prepend the node directly at the top of the timeline feed block
+      activityTimeline.insertBefore(commentRowNode, activityTimeline.firstChild);
+      
+      // Wipe the workspace entry text input area clean
+      newCommentInput.value = '';
+    });
+  }
+
+  // --- Dynamic System Event Logging Pipeline ---
+  function injectSystemTimelineLog(htmlActionLogMessage) {
+    if (!activityTimeline) return;
+
+    const systemRowNode = document.createElement('div');
+    systemRowNode.className = 'timeline-event-row type-system';
+    
+    systemRowNode.innerHTML = `
+      <div class="timeline-avatar-space">
+        <div class="system-node-dot status-change"></div>
+      </div>
+      <div class="timeline-body-content">
+        <div class="event-meta-line">
+          <span class="event-actor-name">Alex Dawson</span>
+          <span class="event-system-message">${htmlActionLogMessage}</span>
+          <span class="event-timestamp-label">Just now</span>
+        </div>
+      </div>
+    `;
+
+    activityTimeline.insertBefore(systemRowNode, activityTimeline.firstChild);
+  }
+
+  // --- Helper String Sanitization Utility ---
+  function escapeHtmlEntities(textStr) {
+    const outputElement = document.createElement('div');
+    outputElement.innerText = textStr;
+    return outputElement.innerHTML;
+  }
+
+  // --- Mock Workspace Actions Click Catchers ---
+  if (editTaskBtn) {
+    editTaskBtn.addEventListener('click', () => {
+      const titleField = document.getElementById('taskTitle');
+      const alternateTitle = prompt("Modify project task summary title string value:", titleField.textContent);
+      if (alternateTitle && alternateTitle.trim() !== "") {
+        titleField.textContent = alternateTitle.trim();
+        injectSystemTimelineLog('updated the task statement title configuration summary');
+      }
+    });
+  }
+
+  if (deleteTaskBtn) {
+    deleteTaskBtn.addEventListener('click', () => {
+      if (confirm('Are you sure you want to permanently delete this task record from the tracking database?')) {
+        alert('Task execution target purged. Redirecting back to project matrix view dashboard.');
+        window.location.href = 'projects.html';
+      }
+    });
+  }
+
+  if (toggleWatchBtn) {
+    toggleWatchBtn.addEventListener('click', () => {
+      toggleWatchBtn.classList.toggle('active');
+      if (toggleWatchBtn.classList.contains('active')) {
+        toggleWatchBtn.style.borderColor = 'var(--success)';
+        toggleWatchBtn.style.color = 'var(--success)';
+        injectSystemTimelineLog('subscribed to instant notification monitoring alerts for this task node');
+      } else {
+        toggleWatchBtn.style.borderColor = 'var(--text-muted)';
+        toggleWatchBtn.style.color = 'var(--text-secondary)';
+        injectSystemTimelineLog('unsubscribed from active tracking notification updates');
+      }
+    });
+  }
+
+  // --- Persistent Workspace Navigation Controls Sync (App Shell Frame) ---
+  const sidebarCollapseBtn = document.getElementById('sidebarToggle');
+  const appShellContainer = document.getElementById('appShell');
+  if (sidebarCollapseBtn && appShellContainer) {
+    sidebarCollapseBtn.addEventListener('click', () => {
+      appShellContainer.classList.toggle('sidebar-collapsed');
+    });
+  }
+
+  const mobileToggleBtn = document.getElementById('mobileMenuBtn');
+  if (mobileToggleBtn && appShellContainer) {
+    mobileToggleBtn.addEventListener('click', () => {
+      appShellContainer.classList.toggle('mobile-sidebar-open');
+    });
+  }
+});

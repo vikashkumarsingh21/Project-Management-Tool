@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Profile — TaskFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/global.css" />
+</head>
+<body class="db-body">
+
+<div class="app-shell" id="appShell">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-header">
+      <a href="../index.html" class="sb-logo">
+        <span class="sb-logo-mark">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <rect x="3"  y="3"  width="8" height="8" rx="2" fill="#fff"/>
+            <rect x="13" y="3"  width="8" height="8" rx="2" fill="#fff" opacity="0.4"/>
+            <rect x="3"  y="13" width="8" height="8" rx="2" fill="#fff" opacity="0.4"/>
+            <rect x="13" y="13" width="8" height="8" rx="2" fill="#fff"/>
+          </svg>
+        </span>
+        <span class="sb-logo-text">TaskFlow</span>
+      </a>
+      <button class="sb-collapse-btn" id="sidebarToggle" aria-label="Collapse sidebar">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="sb-workspace">
+      <button class="sb-workspace-btn" id="workspaceBtn">
+        <span class="ws-avatar">A</span>
+        <span class="ws-info">
+          <span class="ws-name">Acme Corp</span>
+          <span class="ws-plan">Pro plan</span>
+        </span>
+        <svg class="ws-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M3.5 5.25L7 8.75l3.5-3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="sb-nav">
+      <div class="sb-section-label">Main</div>
+      <a href="dashboard.html" class="sb-item" data-tooltip="Dashboard">
+        <span class="sb-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <rect x="1" y="1" width="6" height="6" rx="1.5" fill="currentColor"/>
+            <rect x="9" y="1" width="6" height="6" rx="1.5" fill="currentColor" opacity="0.45"/>
+            <rect x="1" y="9" width="6" height="6" rx="1.5" fill="currentColor" opacity="0.45"/>
+            <rect x="9" y="9" width="6" height="6" rx="1.5" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="sb-label">Dashboard</span>
+      </a>
+      <a href="projects.html" class="sb-item" data-tooltip="Projects">
+        <span class="sb-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M2 3.5h12M2 8h8M2 12.5h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="sb-label">Projects</span>
+        <span class="sb-badge">4</span>
+      </a>
+      <a href="#" class="sb-item" data-tooltip="My Tasks">
+        <span class="sb-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M5 8l2.5 2.5 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="sb-label">My Tasks</span>
+        <span class="sb-badge">12</span>
+      </a>
+
+      <div class="sb-divider"></div>
+      <div class="sb-section-label">Workspace</div>
+      <a href="#" class="sb-item" data-tooltip="Teams">
+        <span class="sb-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="6" cy="5" r="2.5" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M1.5 13.5c0-2.485 2.015-4.5 4.5-4.5s4.5 2.015 4.5 4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            <circle cx="12" cy="5" r="1.75" stroke="currentColor" stroke-width="1.3"/>
+            <path d="M14.5 13.5c0-1.657-.895-3.1-2.25-3.75" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="sb-label">Teams</span>
+      </a>
+    </nav>
+
+    <div class="sb-footer">
+      <a href="#" class="sb-item" data-tooltip="Settings">
+        <span class="sb-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="2.25" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M8 1v1.5M8 13.5V15M15 8h-1.5M2.5 8H1M12.364 3.636l-1.06 1.06M4.697 11.303l-1.06 1.06M12.364 12.364l-1.06-1.06M4.697 4.697l-1.06-1.06" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="sb-label">Settings</span>
+      </a>
+    </div>
+  </aside>
+
+  <div class="main-area" id="mainArea">
+
+    <header class="topbar" id="topbar">
+      <div class="topbar-left">
+        <button class="topbar-menu-btn" id="mobileMenuBtn" aria-label="Open sidebar">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M2 4.5h14M2 9h14M2 13.5h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <div class="topbar-breadcrumb">
+          <span class="breadcrumb-workspace">Acme Corp</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 3l4 4-4 4" stroke="#9CA3AF" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="breadcrumb-page">User Profile</span>
+        </div>
+      </div>
+
+      <div class="topbar-right">
+        <button class="topbar-avatar-btn" id="profileBtn" aria-label="User profile">
+          <div class="profile-avatar-lg">AD</div>
+        </button>
+        
+        <div class="profile-dropdown" id="profileDropdown" style="display:none">
+          <div class="profile-info">
+            <div class="profile-avatar-lg">AD</div>
+            <div class="profile-details">
+              <div class="profile-name display-user-name">Alex Dawson</div>
+              <div class="profile-email display-user-email">alex@acmecorp.io</div>
+            </div>
+          </div>
+          <div class="dropdown-divider"></div>
+          <a href="profile.html" class="dropdown-item active">Profile</a>
+          <a href="#" class="dropdown-item">Sign Out</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-content" id="pageContent">
+      <div class="profile-wrapper">
+        
+        <div class="profile-card-hero">
+          <div class="profile-banner">
+            <div class="profile-banner-overlay"></div>
+          </div>
+          <div class="profile-hero-content">
+            <div class="profile-hero-top">
+              <div class="profile-avatar-container">
+                <div class="profile-avatar-initials">AD</div>
+              </div>
+              <div class="profile-hero-actions">
+                <button class="btn btn-outline btn-sm" id="editProfileBtn">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.5 1.5l3 3L4.5 12.5H1.5v-3l8-8z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span>Edit Profile</span>
+                </button>
+                <button class="btn btn-outline btn-sm" id="changePasswordBtn">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="10" height="7" rx="1.5"/><path d="M4.5 5V3.5a2.5 2.5 0 015 0V5" stroke-linecap="round"/></svg>
+                  <span>Change Password</span>
+                </button>
+              </div>
+            </div>
+            
+            <div class="profile-identity">
+              <h2 class="display-user-name">Alex Dawson</h2>
+              <div class="profile-identity-meta">
+                <div class="profile-meta-item">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1.5 4.5l5.5 3.5 5.5-3.5m-11 7h11a1 1 0 001-1v-6a1 1 0 00-1-1h-11a1 1 0 00-1 1v6a1 1 0 001 1z"/></svg>
+                  <span class="display-user-email">alex@acmecorp.io</span>
+                </div>
+                <div class="profile-meta-item">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12.5 6c0 3.5-5.5 7-5.5 7S1.5 9.5 1.5 6a5.5 5.5 0 1111 0z"/><circle cx="7" cy="6" r="1.5"/></svg>
+                  <span id="displayUserLocation">San Francisco, CA</span>
+                </div>
+                <div class="profile-meta-item">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1.5" y="3" width="11" height="9.5" rx="1.5"/><path d="M1.5 6h11M4.5 3v3M9.5 3v3"/></svg>
+                  <span class="display-user-role">Senior Product Designer</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-stats-row">
+          <div class="profile-stat-card">
+            <div class="profile-stat-icon icon-blue">
+              <svg width="20" height="20" viewBox="0 0 16 16" fill="none"><path d="M2 3.5h12M2 8h8M2 12.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <div class="profile-stat-info">
+              <span class="profile-stat-value">14</span>
+              <span class="profile-stat-label">Projects Joined</span>
+            </div>
+          </div>
+          <div class="profile-stat-card">
+            <div class="profile-stat-icon icon-green">
+              <svg width="20" height="20" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M5 8l2.5 2.5 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="profile-stat-info">
+              <span class="profile-stat-value">382</span>
+              <span class="profile-stat-label">Tasks Completed</span>
+            </div>
+          </div>
+          <div class="profile-stat-card">
+            <div class="profile-stat-icon icon-amber">
+              <svg width="20" height="20" viewBox="0 0 16 16" fill="none"><circle cx="6" cy="5" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M1.5 13.5c0-2.485 2.015-4.5 4.5-4.5s4.5 2.015 4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <div class="profile-stat-info">
+              <span class="profile-stat-value">6</span>
+              <span class="profile-stat-label">Teams Joined</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-tabs-container">
+          <div class="profile-tabs-nav">
+            <button class="profile-tab-btn active" data-tab="overview">Overview</button>
+            <button class="profile-tab-btn" data-tab="activity">Activity</button>
+            <button class="profile-tab-btn" data-tab="projects">Projects</button>
+            <button class="profile-tab-btn" data-tab="settings">Settings</button>
+          </div>
+        </div>
+
+        <div class="profile-tab-content">
+          
+          <div class="profile-tab-pane active" id="overview">
+            <div class="profile-overview-grid">
+              <div class="profile-overview-main">
+                <div class="profile-section-card">
+                  <h3>Biography</h3>
+                  <p class="profile-about-text" id="displayUserBio">
+                    Senior Product Designer focused on engineering smooth collaborative management software systems. Passionate about structural architectures, accessible human UI tokens, and beautiful interaction workflows. Reusing system elements to maximize speed and cohesion.
+                  </p>
+                  <div class="profile-skills-tags">
+                    <span class="profile-skill-tag">Design Systems</span>
+                    <span class="profile-skill-tag">SaaS Architecture</span>
+                    <span class="profile-skill-tag">UI/UX Layouts</span>
+                    <span class="profile-skill-tag">CSS Tokens</span>
+                    <span class="profile-skill-tag">Interaction Engineering</span>
+                  </div>
+                </div>
+
+                <div class="profile-section-card">
+                  <h3>Current Focus Area</h3>
+                  <div class="info-list">
+                    <div class="info-list-item">
+                      <span class="info-list-label">Primary Assignment</span>
+                      <span class="info-list-value">TaskFlow Design Tokens Realignment v3</span>
+                    </div>
+                    <div class="info-list-item">
+                      <span class="info-list-label">Upcoming Milestones</span>
+                      <span class="info-list-value">Refactor layout grids across cross-functional engineering views</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="profile-overview-side">
+                <div class="profile-section-card">
+                  <h3>Workplace Profile</h3>
+                  <div class="info-list">
+                    <div class="info-list-item">
+                      <span class="info-list-label">Department</span>
+                      <span class="info-list-value">Product Engineering</span>
+                    </div>
+                    <div class="info-list-item">
+                      <span class="info-list-label">Reporting To</span>
+                      <span class="info-list-value">Marcus Vance (VP of Design)</span>
+                    </div>
+                    <div class="info-list-item">
+                      <span class="info-list-label">Timezone</span>
+                      <span class="info-list-value">GMT -8 (Pacific Time)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-tab-pane" id="activity">
+            <div class="profile-section-card">
+              <h3>Recent Stream Updates</h3>
+              <div class="profile-timeline">
+                <div class="profile-timeline-item completed">
+                  <div class="profile-timeline-dot"></div>
+                  <div class="profile-timeline-content">
+                    <div class="profile-timeline-title">Marked <strong class="display-user-name">Alex Dawson</strong> completed task <strong>"Refactor design definitions inside global.css"</strong></div>
+                    <div class="profile-timeline-time">12 minutes ago</div>
+                  </div>
+                </div>
+                <div class="profile-timeline-item joined">
+                  <div class="profile-timeline-dot"></div>
+                  <div class="profile-timeline-content">
+                    <div class="profile-timeline-title">Joined project core team <strong>"Mobile Application Shell Layout"</strong></div>
+                    <div class="profile-timeline-time">2 hours ago</div>
+                  </div>
+                </div>
+                <div class="profile-timeline-item warning">
+                  <div class="profile-timeline-dot"></div>
+                  <div class="profile-timeline-content">
+                    <div class="profile-timeline-title">Updated workspace configurations for <strong>Acme Corp</strong></div>
+                    <div class="profile-timeline-time">Yesterday at 4:15 PM</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-tab-pane" id="projects">
+            <div class="profile-projects-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--sp-4);">
+              <div class="project-card">
+                <div class="project-card-top">
+                  <div class="project-icon" style="background:var(--primary-light); color:var(--primary)">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="3" y="1" width="10" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M6 5h4M6 8h4M6 11h2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                  </div>
+                </div>
+                <div style="margin: var(--sp-3) 0 var(--sp-1) 0; font-weight:600; font-family:var(--font-display);">Platform Framework Upgrade</div>
+                <p style="font-size:0.8125rem; color:var(--text-secondary); margin-bottom:var(--sp-4);">Integrating centralized structural variables across standard modules.</p>
+                <div class="project-progress">
+                  <div class="project-progress-bar">
+                    <div class="project-progress-fill" style="width:78%; background:var(--primary)"></div>
+                  </div>
+                  <span class="project-progress-pct">78%</span>
+                </div>
+              </div>
+
+              <div class="project-card">
+                <div class="project-card-top">
+                  <div class="project-icon" style="background:#F5F3FF; color:#7C3AED">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.4"/><path d="M8 4v4l3 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                  </div>
+                </div>
+                <div style="margin: var(--sp-3) 0 var(--sp-1) 0; font-weight:600; font-family:var(--font-display);">Mobile App UI Realignment</div>
+                <p style="font-size:0.8125rem; color:var(--text-secondary); margin-bottom:var(--sp-4);">Porting custom web view component grids into reactive mobile formats.</p>
+                <div class="project-progress">
+                  <div class="project-progress-bar">
+                    <div class="project-progress-fill" style="width:42%; background:#7C3AED"></div>
+                  </div>
+                  <span class="project-progress-pct">42%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-tab-pane" id="settings">
+            <div class="profile-overview-grid">
+              
+              <div class="profile-section-card">
+                <h3>Account Details</h3>
+                <form id="editProfileForm">
+                  <div class="profile-form-grid">
+                    <div class="profile-form-group">
+                      <label class="profile-label" for="inputName">Full Name</label>
+                      <input type="text" class="profile-input" id="inputName" value="Alex Dawson" required />
+                    </div>
+                    <div class="profile-form-group">
+                      <label class="profile-label" for="inputRole">Professional Role</label>
+                      <input type="text" class="profile-input" id="inputRole" value="Senior Product Designer" required />
+                    </div>
+                    <div class="profile-form-group">
+                      <label class="profile-label" for="inputEmail">Email Address</label>
+                      <input type="email" class="profile-input" id="inputEmail" value="alex@acmecorp.io" required />
+                    </div>
+                    <div class="profile-form-group">
+                      <label class="profile-label" for="inputLocation">Location</label>
+                      <input type="text" class="profile-input" id="inputLocation" value="San Francisco, CA" />
+                    </div>
+                    <div class="profile-form-group full-width">
+                      <label class="profile-label" for="inputBio">Biography Summary</label>
+                      <textarea class="profile-textarea" id="inputBio">Senior Product Designer focused on engineering smooth collaborative management software systems. Passionate about structural architectures, accessible human UI tokens, and beautiful interaction workflows. Reusing system elements to maximize speed and cohesion.</textarea>
+                    </div>
+                  </div>
+                  <div class="profile-form-actions">
+                    <button type="submit" class="btn btn-primary btn-sm">Save Changes</button>
+                  </div>
+                </form>
+              </div>
+
+              <div class="profile-section-card">
+                <h3>Change Account Password</h3>
+                <form id="changePasswordForm">
+                  <div class="info-list" style="gap: var(--sp-4);">
+                    <div class="profile-form-group">
+                      <label class="profile-label" for="currentPassword">Current Password</label>
+                      <input type="password" class="profile-input" id="currentPassword" required />
+                    </div>
+                    <div class="profile-form-group">
+                      <label class="profile-label" for="newPassword">New Password</label>
+                      <input type="password" class="profile-input" id="newPassword" placeholder="Minimum 6 characters" required />
+                    </div>
+                    <div class="profile-form-group">
+                      <label class="profile-label" for="confirmPassword">Confirm New Password</label>
+                      <input type="password" class="profile-input" id="confirmPassword" required />
+                    </div>
+                  </div>
+                  <div class="profile-form-actions">
+                    <button type="submit" class="btn btn-primary btn-sm">Update Password</button>
+                  </div>
+                </form>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<div class="profile-toast" id="profileToast">
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 3L5.5 11.5L2 8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <span id="toastMessage">Changes saved successfully!</span>
+</div>
+
+<script src="../js/profile.js"></script>
+</body>
+</html>

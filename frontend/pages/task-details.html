@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TF-304 Implement OAuth2 Client — TaskFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/global.css" />
+</head>
+<body class="db-body">
+
+<div class="app-shell" id="appShell">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-header">
+      <a href="../index.html" class="sb-logo">
+        <span class="sb-logo-mark">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <rect x="3"  y="3"  width="8" height="8" rx="2" fill="#fff"/>
+            <rect x="13" y="3"  width="8" height="8" rx="2" fill="#fff" opacity="0.4"/>
+            <rect x="3"  y="13" width="8" height="8" rx="2" fill="#fff" opacity="0.4"/>
+            <rect x="13" y="13" width="8" height="8" rx="2" fill="#fff"/>
+          </svg>
+        </span>
+        <span class="sb-logo-text">TaskFlow</span>
+      </a>
+      <button class="sb-collapse-btn" id="sidebarToggle" aria-label="Collapse sidebar">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="sb-workspace">
+      <button class="sb-workspace-btn">
+        <span class="ws-avatar">A</span>
+        <span class="ws-info">
+          <span class="ws-name">Acme Corp</span>
+          <span class="ws-plan">Pro plan</span>
+        </span>
+      </button>
+    </div>
+
+    <nav class="sb-nav">
+      <div class="sb-section-label">Main</div>
+      <a href="dashboard.html" class="sb-item">
+        <span class="sb-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <rect x="1" y="1" width="6" height="6" rx="1.5" fill="currentColor"/>
+            <rect x="9" y="1" width="6" height="6" rx="1.5" fill="currentColor" opacity="0.45"/>
+            <rect x="1" y="9" width="6" height="6" rx="1.5" fill="currentColor" opacity="0.45"/>
+            <rect x="9" y="9" width="6" height="6" rx="1.5" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="sb-label">Dashboard</span>
+      </a>
+      <a href="projects.html" class="sb-item active">
+        <span class="sb-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M2 3.5h12M2 8h8M2 12.5h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="sb-label">Projects</span>
+      </a>
+    </nav>
+  </aside>
+
+  <div class="main-area" id="mainArea">
+    
+    <header class="topbar" id="topbar">
+      <div class="topbar-left">
+        <button class="topbar-menu-btn" id="mobileMenuBtn" aria-label="Open sidebar">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M2 4.5h14M2 9h14M2 13.5h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <div class="topbar-breadcrumb">
+          <span class="breadcrumb-workspace">Projects</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 3l4 4-4 4" stroke="#9CA3AF" stroke-width="1.3" stroke-linecap="round"/></svg>
+          <span class="breadcrumb-workspace">Acme Core Platform</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 3l4 4-4 4" stroke="#9CA3AF" stroke-width="1.3" stroke-linecap="round"/></svg>
+          <span class="breadcrumb-page">TF-304</span>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="profile-avatar-sm">AD</div>
+      </div>
+    </header>
+
+    <main class="page-content" id="pageContent">
+      <div class="task-detail-layout">
+        
+        <div class="task-detail-main-pane">
+          
+          <div class="task-pane-header">
+            <div class="task-pane-id-strip">
+              <span class="task-uid-label">TF-304</span>
+              <div class="status-dropdown-wrapper">
+                <select class="task-status-select" id="taskStatusSelect">
+                  <option value="todo">To Do</option>
+                  <option value="progress" selected>In Progress</option>
+                  <option value="review">Review</option>
+                  <option value="completed">Completed</option>
+                </select>
+              </div>
+              <span class="priority-pill high">High Priority</span>
+            </div>
+            
+            <div class="task-pane-actions">
+              <button class="btn btn-outline btn-sm" id="editTaskBtn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                Edit
+              </button>
+              <button class="btn btn-outline btn-sm btn-danger-hook" id="deleteTaskBtn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                Delete
+              </button>
+            </div>
+          </div>
+
+          <div class="task-content-card">
+            <h1 class="task-main-title" id="taskTitle">Implement OAuth2 Client and Middleware Token Interceptor Subsystem</h1>
+            
+            <div class="task-narrative-block">
+              <h3 class="narrative-heading">Description</h3>
+              <div class="narrative-body" id="taskDescription">
+                <p>Configure the downstream edge service routing node to capture oncoming Bearer tokens. The solution needs to cleanly interface with the primary identity service provider cluster, validate signature parameters, cache public encryption key frameworks, and inject valid user session metrics directly into upstream microservice context blocks.</p>
+                <p>Ensure that fallback positions address expired token requests gracefully by formatting accurate error packets matching compliance guidelines.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="task-progress-card">
+            <div class="progress-card-meta">
+              <span class="progress-card-title">Task Workflow Pipeline Progress</span>
+              <span class="progress-card-percentage" id="progressPctText">50% Complete</span>
+            </div>
+            <div class="progress-track-bar">
+              <div class="progress-fill-node" id="progressFillBar" style="width: 50%"></div>
+            </div>
+          </div>
+
+          <div class="task-section-wrapper">
+            <div class="section-title-bar">
+              <h3>Attachments</h3>
+              <span class="section-badge-counter">2 Files</span>
+            </div>
+            <div class="attachments-grid">
+              <div class="attachment-item-card">
+                <div class="file-icon-avatar pdf">PDF</div>
+                <div class="attachment-meta">
+                  <span class="file-name-line">security-spec-v4.pdf</span>
+                  <span class="file-size-line">2.4 MB • Uploaded 2d ago</span>
+                </div>
+                <a href="#" class="file-download-action-btn" aria-label="Download attachment">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                </a>
+              </div>
+              <div class="attachment-item-card">
+                <div class="file-icon-avatar img">IMG</div>
+                <div class="attachment-meta">
+                  <span class="file-name-line">middleware-routing-flow.png</span>
+                  <span class="file-size-line">840 KB • Uploaded 1d ago</span>
+                </div>
+                <a href="#" class="file-download-action-btn" aria-label="Download attachment">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="task-section-wrapper">
+            <div class="section-title-bar">
+              <h3>Activity & Discussion</h3>
+            </div>
+
+            <div class="comment-composer-container">
+              <div class="user-avatar-node">AD</div>
+              <div class="composer-input-wrapper">
+                <textarea class="composer-text-area" id="newCommentInput" placeholder="Add a formal project note or comment tracking detail..."></textarea>
+                <div class="composer-action-strip">
+                  <button class="btn btn-primary btn-sm" id="submitCommentBtn">Send Comment</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="activity-timeline-thread" id="activityTimeline">
+              
+              <div class="timeline-event-row type-comment">
+                <div class="timeline-avatar-space">
+                  <div class="user-avatar-node team-member-1">EM</div>
+                </div>
+                <div class="timeline-body-content">
+                  <div class="event-meta-line">
+                    <span class="event-actor-name">Elena Markova</span>
+                    <span class="event-timestamp-label">3 hours ago</span>
+                  </div>
+                  <div class="comment-bubble-text">
+                    The cryptographic key caching structures have been configured locally. I verified signature validation against the secondary cluster nodes, and performance limits are stable.
+                  </div>
+                </div>
+              </div>
+
+              <div class="timeline-event-row type-system">
+                <div class="timeline-avatar-space">
+                  <div class="system-node-dot status-change"></div>
+                </div>
+                <div class="timeline-body-content">
+                  <div class="event-meta-line">
+                    <span class="event-actor-name">Marcus Vance</span>
+                    <span class="event-system-message">changed status from <strong>To Do</strong> to <strong>In Progress</strong></span>
+                    <span class="event-timestamp-label">Yesterday at 4:12 PM</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="timeline-event-row type-system">
+                <div class="timeline-avatar-space">
+                  <div class="system-node-dot assignment"></div>
+                </div>
+                <div class="timeline-body-content">
+                  <div class="event-meta-line">
+                    <span class="event-actor-name">Marcus Vance</span>
+                    <span class="event-system-message">assigned task to <strong>Alex Dawson</strong></span>
+                    <span class="event-timestamp-label">Yesterday at 2:00 PM</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="timeline-event-row type-system">
+                <div class="timeline-avatar-space">
+                  <div class="system-node-dot creation"></div>
+                </div>
+                <div class="timeline-body-content">
+                  <div class="event-meta-line">
+                    <span class="event-actor-name">System Automations</span>
+                    <span class="event-system-message">created task inside <strong>Acme Core Platform</strong></span>
+                    <span class="event-timestamp-label">Oct 14, 2025</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <aside class="task-detail-side-pane">
+          <div class="side-pane-group">
+            <h4 class="side-pane-heading">Task Attributes</h4>
+            
+            <div class="attribute-property-list">
+              
+              <div class="property-row-item">
+                <span class="property-label">Project</span>
+                <span class="property-value-text weight-bold">Acme Core Platform</span>
+              </div>
+              
+              <div class="property-row-item">
+                <span class="property-label">Assigned To</span>
+                <div class="property-value-inline-user">
+                  <div class="user-avatar-xs">AD</div>
+                  <span class="property-value-text">Alex Dawson</span>
+                </div>
+              </div>
+
+              <div class="property-row-item">
+                <span class="property-label">Created By</span>
+                <div class="property-value-inline-user">
+                  <div class="user-avatar-xs team-member-2">MV</div>
+                  <span class="property-value-text">Marcus Vance</span>
+                </div>
+              </div>
+
+              <div class="property-row-item">
+                <span class="property-label">Start Date</span>
+                <span class="property-value-text">Oct 14, 2025</span>
+              </div>
+
+              <div class="property-row-item">
+                <span class="property-label">Due Date</span>
+                <span class="property-value-text" id="dueDateDisplay">Oct 28, 2025</span>
+              </div>
+
+              <div class="property-row-item">
+                <span class="property-label">Estimated Time</span>
+                <span class="property-value-text">16h 00m</span>
+              </div>
+
+              <div class="property-row-item">
+                <span class="property-label">Actual Time</span>
+                <span class="property-value-text">08h 30m</span>
+              </div>
+
+              <div class="property-row-item">
+                <span class="property-label">Estimated End</span>
+                <span class="property-value-text text-highlight-warning">Oct 26, 2025</span>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="side-pane-divider"></div>
+
+          <div class="side-pane-group">
+            <h4 class="side-pane-heading">Tags</h4>
+            <div class="task-tags-flex-wrap">
+              <span class="tag-node-badge">Security</span>
+              <span class="tag-node-badge">Backend-Core</span>
+              <span class="tag-node-badge">OAuth2</span>
+            </div>
+          </div>
+
+          <div class="side-pane-divider"></div>
+
+          <div class="side-pane-group">
+            <div class="watchers-header-flex">
+              <h4 class="side-pane-heading">Watchers</h4>
+              <span class="section-badge-counter">3</span>
+            </div>
+            <div class="watchers-avatar-row-list">
+              <div class="user-avatar-sm tooltip" data-tooltip="Elena Markova">EM</div>
+              <div class="user-avatar-sm team-member-2 tooltip" data-tooltip="Marcus Vance">MV</div>
+              <div class="user-avatar-sm team-member-3 tooltip" data-tooltip="Sarah Jenkins">SJ</div>
+              <button class="add-watcher-circle-btn" id="toggleWatchBtn" aria-label="Watch task updates">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+              </button>
+            </div>
+          </div>
+
+        </aside>
+
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="../js/tasks.js"></script>
+</body>
+</html>

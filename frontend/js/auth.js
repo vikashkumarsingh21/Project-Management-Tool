@@ -407,3 +407,184 @@ document.addEventListener('DOMContentLoaded', () => {
   initForgotPassword();
   injectDemoHint();
 });
+
+
+
+/**
+ * TaskFlow Design System — Client Validation & Authentication Subsystem
+ */
+document.addEventListener('DOMContentLoaded', () => {
+  
+  // --- Form Element Selectors Hub ---
+  const registerForm = document.getElementById('registerForm');
+  const googleBtn = document.getElementById('googleSignupBtn');
+  
+  const fields = {
+    name: { input: document.getElementById('fullName'), error: document.getElementById('fullNameError') },
+    email: { input: document.getElementById('email'), error: document.getElementById('emailError') },
+    role: { input: document.getElementById('userRole'), error: document.getElementById('userRoleError') },
+    password: { input: document.getElementById('password'), error: document.getElementById('passwordError') },
+    confirmPassword: { input: document.getElementById('confirmPassword'), error: document.getElementById('confirmPasswordError') },
+    terms: { input: document.getElementById('termsAgreement'), error: document.getElementById('termsError') }
+  };
+
+  const strengthBar = document.getElementById('strengthBar');
+  const strengthText = document.getElementById('strengthText');
+
+  // --- Password Visibility Toggle Actions Mechanism ---
+  const revealButtons = document.querySelectorAll('.password-reveal-toggle');
+  revealButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-target');
+      const targetInput = document.getElementById(targetId);
+      
+      if (targetInput.type === 'password') {
+        targetInput.type = 'text';
+        btn.textContent = 'Hide';
+      } else {
+        targetInput.type = 'password';
+        btn.textContent = 'Show';
+      }
+    });
+  });
+
+  // --- Real-time Complexity Scoring Array Engine ---
+  if (fields.password.input) {
+    fields.password.input.addEventListener('input', () => {
+      const val = fields.password.input.value;
+      const metrics = calculatePasswordStrength(val);
+      updateStrengthUI(metrics);
+    });
+  }
+
+  function calculatePasswordStrength(pwd) {
+    let score = 0;
+    if (!pwd) return { score: 0, label: 'Enter at least 8 structured characters.', color: 'transparent' };
+    
+    // Test parameters
+    if (pwd.length >= 8) score += 1;
+    if (pwd.length >= 12) score += 1; // Extra length index allocation
+    if (/[A-Z]/.test(pwd)) score += 1;
+    if (/[0-9]/.test(pwd)) score += 1;
+    if (/[^A-Za-z0-9]/.test(pwd)) score += 1;
+
+    if (score <= 2) return { score: 25, label: 'Weak configuration syntax.', color: '#EF4444' }; // --danger
+    if (score <= 4) return { score: 60, label: 'Medium safety tracking score.', color: '#F59E0B' }; // --warning
+    return { score: 100, label: 'Strong cryptographic structure secured.', color: '#22C55E' }; // --success
+  }
+
+  function updateStrengthUI(metrics) {
+    if (!strengthBar || !strengthText) return;
+    strengthBar.style.width = `${metrics.score}%`;
+    strengthBar.style.backgroundColor = metrics.color;
+    strengthText.textContent = metrics.label;
+    strengthText.style.color = metrics.score === 25 ? 'var(--danger)' : metrics.score === 60 ? 'var(--warning)' : 'var(--text-secondary)';
+  }
+
+  // --- Client Validation Validation Pipeline ---
+  function clearErrors() {
+    Object.keys(fields).forEach(key => {
+      if (fields[key].error) fields[key].error.textContent = '';
+      if (fields[key].input) fields[key].input.classList.remove('error');
+    });
+  }
+
+  function setError(fieldKey, message) {
+    if (fields[fieldKey].error) fields[fieldKey].error.textContent = message;
+    if (fields[fieldKey].input) fields[fieldKey].input.classList.add('error');
+  }
+
+  function validateRegistrationForm() {
+    clearErrors();
+    let isPipelineClear = true;
+
+    // Full Name verification execution
+    if (!fields.name.input.value.trim()) {
+      setError('name', 'Full identity name configuration required.');
+      isPipelineClear = false;
+    }
+
+    // Email matching rules processing
+    const emailValue = fields.email.input.value.trim();
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailValue) {
+      setError('email', 'Corporate email identity node address required.');
+      isPipelineClear = false;
+    } else if (!emailPattern.test(emailValue)) {
+      setError('email', 'Invalid email schema resolution format detected.');
+      isPipelineClear = false;
+    }
+
+    // Role profile selection testing
+    if (!fields.role.input.value) {
+      setError('role', 'Select an workspace assignment profile role node.');
+      isPipelineClear = false;
+    }
+
+    // Password baseline structural verification execution
+    const passwordValue = fields.password.input.value;
+    if (!passwordValue) {
+      setError('password', 'Password string security value parameter needed.');
+      isPipelineClear = false;
+    } else if (passwordValue.length < 8) {
+      setError('password', 'Security requirements mismatch: minimum length is 8.');
+      isPipelineClear = false;
+    }
+
+    // Confirm passwords match verification matching check
+    const confirmPasswordValue = fields.confirmPassword.input.value;
+    if (!confirmPasswordValue) {
+      setError('confirmPassword', 'Confirmation authorization repeat check required.');
+      isPipelineClear = false;
+    } else if (passwordValue !== confirmPasswordValue) {
+      setError('confirmPassword', 'Verification error: credential strings do not match.');
+      isPipelineClear = false;
+    }
+
+    // Terms check box enforcement parameter validation
+    if (!fields.terms.input.checked) {
+      setError('terms', 'Workspace usage terms compliance acceptance required.');
+      isPipelineClear = false;
+    }
+
+    return isPipelineClear;
+  }
+
+  // --- Submissions Execution Interceptor ---
+  if (registerForm) {
+    registerForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      
+      const formPassedValidation = validateRegistrationForm();
+      
+      if (formPassedValidation) {
+        // Collect form data payload parameters
+        const registrationPayload = {
+          name: fields.name.input.value.trim(),
+          email: fields.email.input.value.trim(),
+          role: fields.role.input.value,
+          password: fields.password.input.value
+        };
+        
+        console.log('TaskFlow Registration Processing Payload Transmission:', registrationPayload);
+        
+        // Simulating backend execution delay. Replace with window.location.href target upon implementation.
+        const submitButton = document.getElementById('submitBtn');
+        submitButton.disabled = true;
+        submitButton.textContent = 'Creating workspace...';
+        
+        setTimeout(() => {
+          alert('Registration compiled successfully! Redirecting downstream to dashboard setup pipelines.');
+          window.location.href = 'login.html';
+        }, 1200);
+      }
+    });
+  }
+
+  // Google OAuth Hook Sandbox Stub 
+  if (googleBtn) {
+    googleBtn.addEventListener('click', () => {
+      console.log('Initiating Google Federated Identity OAuth Pipeline Redirection API...');
+    });
+  }
+});
