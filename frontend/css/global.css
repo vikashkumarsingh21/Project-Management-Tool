@@ -377,3 +377,206 @@ ul, ol {
   margin: 0 auto;
   line-height: 1.65;
 }
+
+
+/* ==========================================================================
+   TASKFLOW ADDITIONS: TEAMS & MEMBERS MANAGEMENT DIRECTORY
+   ========================================================================== */
+
+.teams-tab-container {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 20px;
+}
+
+.teams-tab-btn {
+  background: none;
+  border: none;
+  padding: 10px 2px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.teams-tab-btn:hover {
+  color: var(--text);
+}
+
+.teams-tab-btn.active {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.teams-tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--primary);
+  border-radius: 2px;
+}
+
+/* Members Responsive Table Structures */
+.members-table-wrapper {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.members-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+}
+
+.members-data-table th {
+  background-color: #F9FAFB;
+  padding: 12px 16px;
+  font-weight: 600;
+  color: #4B5563;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--border);
+}
+
+.members-data-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text);
+  vertical-align: middle;
+}
+
+.members-data-table tr:last-child td {
+  border-bottom: none;
+}
+
+.members-data-table tr:hover td {
+  background-color: #F9FAFB;
+}
+
+/* User Identity Blocks */
+.profile-cell-identity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.member-avatar-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
+
+.profile-cell-name {
+  font-weight: 500;
+  color: var(--text);
+}
+
+/* Team Card Visual Tweaks */
+.team-indicator-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.team-card-header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.team-card-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.team-card-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.team-lead-badge-row {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+.team-lead-bold {
+  font-weight: 500;
+  color: var(--text);
+}
+
+/* Functional Badges */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.status-pill.active {
+  background-color: #DCFCE7;
+  color: #166534;
+}
+
+.status-pill.invited {
+  background-color: #FEF9C3;
+  color: #854D0E;
+}
+
+.action-icon-btn {
+  background: none;
+  border: none;
+  color: #9CA3AF;
+  padding: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.action-icon-btn:hover {
+  color: #EF4444;
+  background-color: #FEF2F2;
+}
+
+/* Responsive adjustments */
+@media(max-width: 768px) {
+  .members-table-wrapper {
+    overflow-x: auto;
+  }
+  .teams-tab-container {
+    gap: 16px;
+  }
+}

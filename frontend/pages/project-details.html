@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Q2 Platform Release — TaskFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="stylesheet" href="../css/projects.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       APP SHELL
+  ═══════════════════════════════════════ -->
+  <div class="app-shell">
+
+    <!-- SIDEBAR -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="logo">
+          <span class="logo-mark">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="3" width="8" height="8" rx="2" fill="#2563EB"/>
+              <rect x="13" y="3" width="8" height="8" rx="2" fill="#2563EB" opacity="0.5"/>
+              <rect x="3" y="13" width="8" height="8" rx="2" fill="#2563EB" opacity="0.5"/>
+              <rect x="13" y="13" width="8" height="8" rx="2" fill="#2563EB"/>
+            </svg>
+          </span>
+          <span class="logo-text">TaskFlow</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="snav-section">
+          <a href="#" class="snav-item">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="6" height="6" rx="1" fill="currentColor"/><rect x="9" y="1" width="6" height="6" rx="1" fill="currentColor" opacity="0.5"/><rect x="1" y="9" width="6" height="6" rx="1" fill="currentColor" opacity="0.5"/><rect x="9" y="9" width="6" height="6" rx="1" fill="currentColor"/></svg>
+            Dashboard
+          </a>
+          <a href="#" class="snav-item active">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M2 8h8M2 12h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Projects
+          </a>
+          <a href="#" class="snav-item">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 2H3a1 1 0 00-1 1v10a1 1 0 001 1h10a1 1 0 001-1V3a1 1 0 00-1-1z" stroke="currentColor" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            My Tasks
+          </a>
+          <a href="#" class="snav-item">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="4" width="3" height="9" rx="1" fill="currentColor" opacity="0.4"/><rect x="6" y="1" width="3" height="12" rx="1" fill="currentColor" opacity="0.7"/><rect x="11" y="3" width="3" height="10" rx="1" fill="currentColor"/></svg>
+            Analytics
+          </a>
+          <a href="#" class="snav-item">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1l1.8 3.6 4 .6-2.9 2.8.7 4L8 10l-3.6 2 .7-4L2.2 5.2l4-.6L8 1z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            Sprints
+          </a>
+        </div>
+
+        <div class="snav-section">
+          <div class="snav-label">My Projects</div>
+          <a href="#" class="snav-item snav-project active">
+            <span class="snav-dot" style="background:#2563EB"></span>
+            Q2 Platform Release
+          </a>
+          <a href="#" class="snav-item snav-project">
+            <span class="snav-dot" style="background:#7C3AED"></span>
+            Mobile App v2.0
+          </a>
+          <a href="#" class="snav-item snav-project">
+            <span class="snav-dot" style="background:#059669"></span>
+            Design System
+          </a>
+          <a href="#" class="snav-item snav-project">
+            <span class="snav-dot" style="background:#D97706"></span>
+            API Overhaul
+          </a>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-chip">
+          <div class="user-avatar" style="background:#2563EB">JD</div>
+          <div class="user-info">
+            <div class="user-name">James Doe</div>
+            <div class="user-role">Engineering Lead</div>
+          </div>
+          <button class="btn btn-ghost user-settings" aria-label="Settings">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.05 3.05l1.41 1.41M11.54 11.54l1.41 1.41M3.05 12.95l1.41-1.41M11.54 4.46l1.41-1.41" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="app-main">
+
+      <!-- TOP BAR -->
+      <header class="topbar">
+        <button class="topbar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 4.5h14M2 9h14M2 13.5h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="breadcrumb">
+          <a href="#">Projects</a>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4 2l4 4-4 4" stroke="#9CA3AF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Q2 Platform Release</span>
+        </div>
+        <div class="topbar-actions">
+          <button class="btn btn-ghost btn-sm" id="notificationsBtn" aria-label="Notifications">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 14a1.5 1.5 0 003 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8 2a4 4 0 00-4 4v2.5L2.5 11h11L12 8.5V6a4 4 0 00-4-4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            <span class="notif-badge">3</span>
+          </button>
+          <button class="btn btn-ghost btn-sm" aria-label="Search">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- ══════════════════════════════════
+           PROJECT HEADER
+      ══════════════════════════════════ -->
+      <div class="project-page">
+
+        <section class="project-header-section">
+          <div class="ph-top">
+            <div class="ph-identity">
+              <div class="ph-icon" style="background: linear-gradient(135deg,#2563EB,#4F46E5)">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 5h16M3 11h10M3 17h13" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+              </div>
+              <div>
+                <div class="ph-eyebrow">Engineering · Sprint 42</div>
+                <h1 class="ph-title" id="projectTitle">Q2 Platform Release</h1>
+                <div class="ph-meta">
+                  <span class="badge badge-blue">
+                    <span class="status-dot active"></span>
+                    In Progress
+                  </span>
+                  <span class="ph-sep">·</span>
+                  <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><rect x="1" y="2" width="12" height="11" rx="1.5" stroke="#9CA3AF" stroke-width="1.4"/><path d="M4 1v2M10 1v2M1 6h12" stroke="#9CA3AF" stroke-width="1.4" stroke-linecap="round"/></svg>
+                  <span class="ph-date">Started Apr 1, 2025</span>
+                  <span class="ph-sep">·</span>
+                  <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="#9CA3AF" stroke-width="1.4"/><path d="M7 4v3l2 2" stroke="#9CA3AF" stroke-width="1.4" stroke-linecap="round"/></svg>
+                  <span class="ph-date">Due Jun 28, 2025</span>
+                </div>
+              </div>
+            </div>
+            <div class="ph-actions">
+              <button class="btn btn-ghost btn-sm" id="editProjectBtn">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9.5 2.5l2 2L4 12H2v-2L9.5 2.5z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Edit
+              </button>
+              <button class="btn btn-ghost btn-sm" id="inviteMemberBtn">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="6" cy="4.5" r="2.5" stroke="currentColor" stroke-width="1.4"/><path d="M1 12c0-2.76 2.24-4 5-4s5 1.24 5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M11 5v4M13 7h-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                Invite
+              </button>
+              <button class="btn btn-danger btn-sm" id="deleteProjectBtn">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4h10M5 4V2.5h4V4M11 4l-.7 7.5A1 1 0 019.3 12H4.7a1 1 0 01-1-.5L3 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Delete
+              </button>
+            </div>
+          </div>
+
+          <!-- Quick-stat strip -->
+          <div class="ph-stats-strip">
+            <div class="ph-stat">
+              <div class="ph-stat-val">24</div>
+              <div class="ph-stat-lbl">Total tasks</div>
+            </div>
+            <div class="ph-stat-divider"></div>
+            <div class="ph-stat">
+              <div class="ph-stat-val text-success">17</div>
+              <div class="ph-stat-lbl">Completed</div>
+            </div>
+            <div class="ph-stat-divider"></div>
+            <div class="ph-stat">
+              <div class="ph-stat-val text-primary">5</div>
+              <div class="ph-stat-lbl">In review</div>
+            </div>
+            <div class="ph-stat-divider"></div>
+            <div class="ph-stat">
+              <div class="ph-stat-val text-danger">2</div>
+              <div class="ph-stat-lbl">Blocked</div>
+            </div>
+            <div class="ph-stat-divider"></div>
+            <div class="ph-stat">
+              <div class="ph-stat-val">6</div>
+              <div class="ph-stat-lbl">Members</div>
+            </div>
+            <div class="ph-stat-divider"></div>
+            <div class="ph-stat">
+              <div class="ph-stat-val">18d</div>
+              <div class="ph-stat-lbl">Remaining</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PAGE BODY: 2-column layout -->
+        <div class="project-body">
+
+          <!-- LEFT COLUMN -->
+          <div class="project-col-main">
+
+            <!-- ── DESCRIPTION ── -->
+            <section class="pd-section" id="sec-description">
+              <div class="pds-header">
+                <h2 class="pds-title">Description</h2>
+                <button class="btn btn-ghost btn-sm pds-edit" data-section="description" aria-label="Edit description">
+                  <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M9.5 2.5l2 2L4 12H2v-2L9.5 2.5z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </div>
+              <div class="pds-body">
+                <p class="project-desc" id="projectDesc">
+                  The Q2 Platform Release consolidates three long-running engineering workstreams: authentication hardening, performance improvements to the core dashboard, and the first phase of our mobile push notification system. This sprint is the last major milestone before the public GA announcement scheduled for late June.
+                </p>
+                <div class="desc-tags">
+                  <span class="dtag">Platform</span>
+                  <span class="dtag">Backend</span>
+                  <span class="dtag">Mobile</span>
+                  <span class="dtag">Security</span>
+                  <span class="dtag">Q2 2025</span>
+                </div>
+              </div>
+            </section>
+
+            <!-- ── PROGRESS OVERVIEW ── -->
+            <section class="pd-section" id="sec-progress">
+              <div class="pds-header">
+                <h2 class="pds-title">Progress Overview</h2>
+                <span class="pds-badge badge badge-blue">71% complete</span>
+              </div>
+              <div class="pds-body">
+                <div class="progress-master">
+                  <div class="pm-track">
+                    <div class="pm-fill" style="width:71%" id="masterProgress"></div>
+                  </div>
+                  <span class="pm-pct">71%</span>
+                </div>
+                <div class="progress-breakdown">
+                  <div class="pb-row">
+                    <div class="pb-label">
+                      <span class="pb-dot" style="background:var(--success)"></span>
+                      Completed
+                    </div>
+                    <div class="pb-bar-wrap">
+                      <div class="pb-bar" style="width:70.8%;background:var(--success)"></div>
+                    </div>
+                    <div class="pb-count">17 / 24</div>
+                  </div>
+                  <div class="pb-row">
+                    <div class="pb-label">
+                      <span class="pb-dot" style="background:var(--primary)"></span>
+                      In Review
+                    </div>
+                    <div class="pb-bar-wrap">
+                      <div class="pb-bar" style="width:20.8%;background:var(--primary)"></div>
+                    </div>
+                    <div class="pb-count">5 / 24</div>
+                  </div>
+                  <div class="pb-row">
+                    <div class="pb-label">
+                      <span class="pb-dot" style="background:var(--danger)"></span>
+                      Blocked
+                    </div>
+                    <div class="pb-bar-wrap">
+                      <div class="pb-bar" style="width:8.3%;background:var(--danger)"></div>
+                    </div>
+                    <div class="pb-count">2 / 24</div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- ── MILESTONES ── -->
+            <section class="pd-section" id="sec-milestones">
+              <div class="pds-header">
+                <h2 class="pds-title">Milestones</h2>
+                <button class="btn btn-ghost btn-sm" id="addMilestoneBtn">
+                  <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  Add
+                </button>
+              </div>
+              <div class="pds-body">
+                <div class="milestones-list" id="milestonesList">
+
+                  <div class="milestone-item completed">
+                    <div class="ms-icon">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3.5" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <div class="ms-body">
+                      <div class="ms-title">Auth flow redesign shipped</div>
+                      <div class="ms-meta">Completed May 2 · Owned by Sarah Lin</div>
+                    </div>
+                    <span class="ms-date">May 2</span>
+                  </div>
+
+                  <div class="milestone-item completed">
+                    <div class="ms-icon">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3.5" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <div class="ms-body">
+                      <div class="ms-title">API rate limiting implemented</div>
+                      <div class="ms-meta">Completed May 18 · Owned by Marcus K.</div>
+                    </div>
+                    <span class="ms-date">May 18</span>
+                  </div>
+
+                  <div class="milestone-item active">
+                    <div class="ms-icon in-progress">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5" stroke="white" stroke-width="1.5"/><path d="M7 4.5v2.5l1.5 1.5" stroke="white" stroke-width="1.4" stroke-linecap="round"/></svg>
+                    </div>
+                    <div class="ms-body">
+                      <div class="ms-title">Dashboard performance audit</div>
+                      <div class="ms-meta">In progress · Due Jun 15 · Owned by Ananya P.</div>
+                    </div>
+                    <span class="ms-date upcoming">Jun 15</span>
+                  </div>
+
+                  <div class="milestone-item upcoming">
+                    <div class="ms-icon pending">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5" stroke="white" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="ms-body">
+                      <div class="ms-title">Mobile push notifications launch</div>
+                      <div class="ms-meta">Blocked · Due Jun 22 · Owned by James D.</div>
+                    </div>
+                    <span class="ms-date blocked">Jun 22</span>
+                  </div>
+
+                  <div class="milestone-item upcoming">
+                    <div class="ms-icon pending">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5" stroke="white" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="ms-body">
+                      <div class="ms-title">GA release & announcement</div>
+                      <div class="ms-meta">Not started · Due Jun 28 · Owned by James D.</div>
+                    </div>
+                    <span class="ms-date">Jun 28</span>
+                  </div>
+
+                </div>
+              </div>
+            </section>
+
+            <!-- ── ACTIVITY TIMELINE ── -->
+            <section class="pd-section" id="sec-activity">
+              <div class="pds-header">
+                <h2 class="pds-title">Activity Timeline</h2>
+                <select class="form-select pds-filter" id="activityFilter" aria-label="Filter activity">
+                  <option value="all">All activity</option>
+                  <option value="tasks">Tasks only</option>
+                  <option value="comments">Comments only</option>
+                  <option value="files">Files only</option>
+                </select>
+              </div>
+              <div class="pds-body">
+                <div class="activity-feed" id="activityFeed">
+
+                  <div class="af-item">
+                    <div class="af-avatar" style="background:#2563EB">JD</div>
+                    <div class="af-content">
+                      <div class="af-text"><strong>James D.</strong> marked <a href="#" class="af-link">Dashboard performance audit</a> as <span class="badge badge-blue">In Review</span></div>
+                      <div class="af-time">2 hours ago</div>
+                    </div>
+                  </div>
+
+                  <div class="af-item">
+                    <div class="af-avatar" style="background:#7C3AED">MK</div>
+                    <div class="af-content">
+                      <div class="af-text"><strong>Marcus K.</strong> uploaded <a href="#" class="af-link">api-schema-v3.yaml</a> to Files</div>
+                      <div class="af-time">5 hours ago</div>
+                    </div>
+                  </div>
+
+                  <div class="af-item">
+                    <div class="af-avatar" style="background:#059669">AP</div>
+                    <div class="af-content">
+                      <div class="af-text"><strong>Ananya P.</strong> commented on <a href="#" class="af-link">Mobile push notifications</a></div>
+                      <div class="af-time">Yesterday at 4:30 PM</div>
+                    </div>
+                  </div>
+
+                  <div class="af-item">
+                    <div class="af-avatar" style="background:#D97706">SL</div>
+                    <div class="af-content">
+                      <div class="af-text"><strong>Sarah L.</strong> completed milestone <strong>API rate limiting implemented</strong></div>
+                      <div class="af-time">May 18</div>
+                    </div>
+                  </div>
+
+                  <div class="af-item">
+                    <div class="af-avatar" style="background:#DC2626">RK</div>
+                    <div class="af-content">
+                      <div class="af-text"><strong>Ryan K.</strong> flagged <a href="#" class="af-link">Mobile push notifications</a> as <span class="badge badge-red">Blocked</span></div>
+                      <div class="af-time">May 17</div>
+                    </div>
+                  </div>
+
+                  <div class="af-item">
+                    <div class="af-avatar" style="background:#0891B2">TN</div>
+                    <div class="af-content">
+                      <div class="af-text"><strong>Tanya N.</strong> was added to the project</div>
+                      <div class="af-time">Apr 30</div>
+                    </div>
+                  </div>
+
+                  <button class="btn btn-ghost btn-sm load-more" id="loadMoreActivity">Load more activity</button>
+                </div>
+              </div>
+            </section>
+
+            <!-- ── COMMENTS ── -->
+            <section class="pd-section" id="sec-comments">
+              <div class="pds-header">
+                <h2 class="pds-title">Comments <span class="pds-count">8</span></h2>
+              </div>
+              <div class="pds-body">
+                <div class="comments-list" id="commentsList">
+
+                  <div class="comment-item">
+                    <div class="comment-avatar" style="background:#2563EB">JD</div>
+                    <div class="comment-body">
+                      <div class="comment-header">
+                        <span class="comment-name">James Doe</span>
+                        <span class="comment-time">Jun 10, 2:14 PM</span>
+                        <button class="btn btn-ghost btn-sm comment-menu" aria-label="Comment options">···</button>
+                      </div>
+                      <p class="comment-text">Blocked on push notifications until the APNS certificate issue is resolved. DevOps is on it — ETA EOD tomorrow. Shouldn't affect the Jun 28 GA date.</p>
+                      <div class="comment-reactions">
+                        <button class="reaction active" data-emoji="👍">👍 4</button>
+                        <button class="reaction" data-emoji="👀">👀 2</button>
+                        <button class="add-reaction" aria-label="Add reaction">+</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="comment-item">
+                    <div class="comment-avatar" style="background:#059669">AP</div>
+                    <div class="comment-body">
+                      <div class="comment-header">
+                        <span class="comment-name">Ananya Patel</span>
+                        <span class="comment-time">Jun 10, 11:08 AM</span>
+                        <button class="btn btn-ghost btn-sm comment-menu" aria-label="Comment options">···</button>
+                      </div>
+                      <p class="comment-text">Dashboard audit is showing p95 response times around 480ms — that's a 60% improvement over baseline. Will push the detailed report to the PR by noon.</p>
+                      <div class="comment-reactions">
+                        <button class="reaction active" data-emoji="🎉">🎉 6</button>
+                        <button class="add-reaction" aria-label="Add reaction">+</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="comment-item">
+                    <div class="comment-avatar" style="background:#7C3AED">MK</div>
+                    <div class="comment-body">
+                      <div class="comment-header">
+                        <span class="comment-name">Marcus Kellner</span>
+                        <span class="comment-time">Jun 9, 3:45 PM</span>
+                        <button class="btn btn-ghost btn-sm comment-menu" aria-label="Comment options">···</button>
+                      </div>
+                      <p class="comment-text">Rate limiting schema v3 is finalized. Updated the API docs with the new headers and backoff strategy. @Ananya can you confirm this works with the dashboard's polling intervals?</p>
+                      <div class="comment-reactions">
+                        <button class="reaction" data-emoji="👍">👍 2</button>
+                        <button class="add-reaction" aria-label="Add reaction">+</button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- Comment input -->
+                <div class="comment-compose">
+                  <div class="comment-avatar" style="background:#2563EB">JD</div>
+                  <div class="compose-box">
+                    <textarea class="form-textarea compose-input" id="commentInput" placeholder="Add a comment… (@ to mention)" rows="1"></textarea>
+                    <div class="compose-actions">
+                      <div class="compose-tools">
+                        <button class="compose-tool" aria-label="Bold">B</button>
+                        <button class="compose-tool italic" aria-label="Italic">I</button>
+                        <button class="compose-tool" aria-label="Mention">@</button>
+                        <button class="compose-tool" aria-label="Attach">
+                          <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M12.5 6.5L6 13a3.5 3.5 0 01-4.95-4.95l7.07-7.07A2 2 0 0111 3.83L4.05 10.78a.5.5 0 01-.7-.7L10 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                      </div>
+                      <button class="btn btn-primary btn-sm" id="submitComment">Post</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+          </div><!-- /project-col-main -->
+
+          <!-- RIGHT COLUMN (sidebar) -->
+          <aside class="project-col-side">
+
+            <!-- ── PROJECT STATUS ── -->
+            <section class="pd-section" id="sec-status">
+              <div class="pds-header">
+                <h2 class="pds-title">Status</h2>
+                <button class="btn btn-ghost btn-sm pds-edit" data-section="status">
+                  <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M9.5 2.5l2 2L4 12H2v-2L9.5 2.5z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </div>
+              <div class="pds-body">
+                <div class="status-grid">
+                  <div class="sg-row">
+                    <div class="sg-label">Status</div>
+                    <div class="sg-val"><span class="badge badge-blue"><span class="status-dot active"></span>In Progress</span></div>
+                  </div>
+                  <div class="sg-row">
+                    <div class="sg-label">Priority</div>
+                    <div class="sg-val"><span class="badge badge-red">P0 — Critical</span></div>
+                  </div>
+                  <div class="sg-row">
+                    <div class="sg-label">Health</div>
+                    <div class="sg-val"><span class="health-indicator on-track">On Track</span></div>
+                  </div>
+                  <div class="sg-row">
+                    <div class="sg-label">Start date</div>
+                    <div class="sg-val sg-date">Apr 1, 2025</div>
+                  </div>
+                  <div class="sg-row">
+                    <div class="sg-label">Due date</div>
+                    <div class="sg-val sg-date">Jun 28, 2025</div>
+                  </div>
+                  <div class="sg-row">
+                    <div class="sg-label">Sprint</div>
+                    <div class="sg-val sg-date">Sprint 42</div>
+                  </div>
+                  <div class="sg-row">
+                    <div class="sg-label">Team</div>
+                    <div class="sg-val sg-date">Platform Engineering</div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- ── TEAM MEMBERS ── -->
+            <section class="pd-section" id="sec-team">
+              <div class="pds-header">
+                <h2 class="pds-title">Team <span class="pds-count">6</span></h2>
+                <button class="btn btn-ghost btn-sm" id="inviteFromSide">
+                  <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  Invite
+                </button>
+              </div>
+              <div class="pds-body">
+                <div class="team-list" id="teamList">
+
+                  <div class="team-member">
+                    <div class="tm-avatar" style="background:#2563EB">JD</div>
+                    <div class="tm-info">
+                      <div class="tm-name">James Doe</div>
+                      <div class="tm-role">Engineering Lead</div>
+                    </div>
+                    <span class="tm-badge owner">Owner</span>
+                  </div>
+
+                  <div class="team-member">
+                    <div class="tm-avatar" style="background:#059669">AP</div>
+                    <div class="tm-info">
+                      <div class="tm-name">Ananya Patel</div>
+                      <div class="tm-role">Eng. Manager</div>
+                    </div>
+                    <span class="tm-badge">Member</span>
+                  </div>
+
+                  <div class="team-member">
+                    <div class="tm-avatar" style="background:#7C3AED">MK</div>
+                    <div class="tm-info">
+                      <div class="tm-name">Marcus Kellner</div>
+                      <div class="tm-role">Sr. Engineer</div>
+                    </div>
+                    <span class="tm-badge">Member</span>
+                  </div>
+
+                  <div class="team-member">
+                    <div class="tm-avatar" style="background:#D97706">SL</div>
+                    <div class="tm-info">
+                      <div class="tm-name">Sarah Lin</div>
+                      <div class="tm-role">Backend Engineer</div>
+                    </div>
+                    <span class="tm-badge">Member</span>
+                  </div>
+
+                  <div class="team-member">
+                    <div class="tm-avatar" style="background:#DC2626">RK</div>
+                    <div class="tm-info">
+                      <div class="tm-name">Ryan Kim</div>
+                      <div class="tm-role">Mobile Engineer</div>
+                    </div>
+                    <span class="tm-badge">Member</span>
+                  </div>
+
+                  <div class="team-member">
+                    <div class="tm-avatar" style="background:#0891B2">TN</div>
+                    <div class="tm-info">
+                      <div class="tm-name">Tanya Novak</div>
+                      <div class="tm-role">QA Engineer</div>
+                    </div>
+                    <span class="tm-badge viewer">Viewer</span>
+                  </div>
+
+                </div>
+              </div>
+            </section>
+
+            <!-- ── FILES & ATTACHMENTS ── -->
+            <section class="pd-section" id="sec-files">
+              <div class="pds-header">
+                <h2 class="pds-title">Files <span class="pds-count">4</span></h2>
+                <button class="btn btn-ghost btn-sm" id="uploadFileBtn">
+                  <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M2 7h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  Upload
+                </button>
+              </div>
+              <div class="pds-body">
+                <div class="files-list" id="filesList">
+
+                  <div class="file-item">
+                    <div class="file-icon yaml">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2h7l3 3v7a1 1 0 01-1 1H2a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.3"/><path d="M9 2v4h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                    </div>
+                    <div class="file-info">
+                      <div class="file-name">api-schema-v3.yaml</div>
+                      <div class="file-meta">Marcus K. · Jun 10 · 48 KB</div>
+                    </div>
+                    <button class="btn btn-ghost btn-sm file-dl" aria-label="Download">
+                      <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 2v7M4.5 6.5L7 9l2.5-2.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 11h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                    </button>
+                  </div>
+
+                  <div class="file-item">
+                    <div class="file-icon pdf">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2h7l3 3v7a1 1 0 01-1 1H2a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.3"/><path d="M9 2v4h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                    </div>
+                    <div class="file-info">
+                      <div class="file-name">dashboard-perf-report.pdf</div>
+                      <div class="file-meta">Ananya P. · Jun 9 · 1.2 MB</div>
+                    </div>
+                    <button class="btn btn-ghost btn-sm file-dl" aria-label="Download">
+                      <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 2v7M4.5 6.5L7 9l2.5-2.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 11h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                    </button>
+                  </div>
+
+                  <div class="file-item">
+                    <div class="file-icon fig">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2h7l3 3v7a1 1 0 01-1 1H2a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.3"/><path d="M9 2v4h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                    </div>
+                    <div class="file-info">
+                      <div class="file-name">auth-redesign-final.fig</div>
+                      <div class="file-meta">Sarah L. · May 2 · 3.8 MB</div>
+                    </div>
+                    <button class="btn btn-ghost btn-sm file-dl" aria-label="Download">
+                      <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 2v7M4.5 6.5L7 9l2.5-2.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 11h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                    </button>
+                  </div>
+
+                  <div class="file-item">
+                    <div class="file-icon md">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2h7l3 3v7a1 1 0 01-1 1H2a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.3"/><path d="M9 2v4h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                    </div>
+                    <div class="file-info">
+                      <div class="file-name">sprint-42-kickoff-notes.md</div>
+                      <div class="file-meta">James D. · Apr 1 · 12 KB</div>
+                    </div>
+                    <button class="btn btn-ghost btn-sm file-dl" aria-label="Download">
+                      <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 2v7M4.5 6.5L7 9l2.5-2.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 11h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                    </button>
+                  </div>
+
+                </div>
+
+                <!-- Drop zone -->
+                <div class="file-dropzone" id="fileDropzone">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3v10M6 7l4-4 4 4" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 15h14" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  <span>Drop files here or <button class="dropzone-link">browse</button></span>
+                </div>
+              </div>
+            </section>
+
+            <!-- ── RECENT UPDATES ── -->
+            <section class="pd-section" id="sec-updates">
+              <div class="pds-header">
+                <h2 class="pds-title">Recent Updates</h2>
+              </div>
+              <div class="pds-body">
+                <div class="updates-list">
+
+                  <div class="update-item">
+                    <div class="update-dot on-track"></div>
+                    <div class="update-content">
+                      <div class="update-title">Sprint on track — 71% complete</div>
+                      <div class="update-sub">Posted by James D. · Jun 10</div>
+                    </div>
+                  </div>
+
+                  <div class="update-item">
+                    <div class="update-dot at-risk"></div>
+                    <div class="update-content">
+                      <div class="update-title">APNS cert issue blocking push notifications</div>
+                      <div class="update-sub">Posted by Ryan K. · Jun 9</div>
+                    </div>
+                  </div>
+
+                  <div class="update-item">
+                    <div class="update-dot on-track"></div>
+                    <div class="update-content">
+                      <div class="update-title">Dashboard p95 improved by 60%</div>
+                      <div class="update-sub">Posted by Ananya P. · Jun 9</div>
+                    </div>
+                  </div>
+
+                  <div class="update-item">
+                    <div class="update-dot completed"></div>
+                    <div class="update-content">
+                      <div class="update-title">Rate limiting milestone shipped</div>
+                      <div class="update-sub">Posted by Marcus K. · May 18</div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </section>
+
+          </aside><!-- /project-col-side -->
+
+        </div><!-- /project-body -->
+      </div><!-- /project-page -->
+
+    </main><!-- /app-main -->
+  </div><!-- /app-shell -->
+
+  <!-- ═══════════════════════════════════════
+       MODALS
+  ═══════════════════════════════════════ -->
+
+  <!-- Edit Project Modal -->
+  <div class="modal-overlay" id="editModal" role="dialog" aria-modal="true" aria-labelledby="editModalTitle">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title" id="editModalTitle">Edit Project</h3>
+        <button class="modal-close" data-modal="editModal" aria-label="Close">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label" for="editName">Project name</label>
+          <input class="form-input" id="editName" type="text" value="Q2 Platform Release" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="editDesc">Description</label>
+          <textarea class="form-textarea" id="editDesc" rows="4">The Q2 Platform Release consolidates three long-running engineering workstreams: authentication hardening, performance improvements to the core dashboard, and the first phase of our mobile push notification system.</textarea>
+        </div>
+        <div class="modal-row">
+          <div class="form-group">
+            <label class="form-label" for="editStatus">Status</label>
+            <select class="form-select" id="editStatus">
+              <option value="in-progress" selected>In Progress</option>
+              <option value="planning">Planning</option>
+              <option value="on-hold">On Hold</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="editPriority">Priority</label>
+            <select class="form-select" id="editPriority">
+              <option value="p0" selected>P0 — Critical</option>
+              <option value="p1">P1 — High</option>
+              <option value="p2">P2 — Medium</option>
+              <option value="p3">P3 — Low</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-row">
+          <div class="form-group">
+            <label class="form-label" for="editDue">Due date</label>
+            <input class="form-input" id="editDue" type="date" value="2025-06-28" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="editSprint">Sprint</label>
+            <input class="form-input" id="editSprint" type="text" value="Sprint 42" />
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" data-modal="editModal">Cancel</button>
+        <button class="btn btn-primary" id="saveEditBtn">Save changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Invite Member Modal -->
+  <div class="modal-overlay" id="inviteModal" role="dialog" aria-modal="true" aria-labelledby="inviteModalTitle">
+    <div class="modal modal-sm">
+      <div class="modal-header">
+        <h3 class="modal-title" id="inviteModalTitle">Invite team member</h3>
+        <button class="modal-close" data-modal="inviteModal" aria-label="Close">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label" for="inviteEmail">Email address</label>
+          <input class="form-input" id="inviteEmail" type="email" placeholder="colleague@company.com" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="inviteRole">Role</label>
+          <select class="form-select" id="inviteRole">
+            <option value="member" selected>Member</option>
+            <option value="viewer">Viewer</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+        <div class="invite-note">The invitee will receive an email with a link to join the project.</div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" data-modal="inviteModal">Cancel</button>
+        <button class="btn btn-primary" id="sendInviteBtn">Send invite</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirm Modal -->
+  <div class="modal-overlay" id="deleteModal" role="dialog" aria-modal="true" aria-labelledby="deleteModalTitle">
+    <div class="modal modal-sm">
+      <div class="modal-header modal-header-danger">
+        <h3 class="modal-title" id="deleteModalTitle">Delete project?</h3>
+        <button class="modal-close" data-modal="deleteModal" aria-label="Close">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="delete-warning">You are about to permanently delete <strong>Q2 Platform Release</strong>. This action cannot be undone and will delete all 24 tasks, 4 files, and 8 comments.</p>
+        <div class="form-group">
+          <label class="form-label" for="deleteConfirm">Type the project name to confirm</label>
+          <input class="form-input" id="deleteConfirm" type="text" placeholder="Q2 Platform Release" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" data-modal="deleteModal">Cancel</button>
+        <button class="btn btn-danger" id="confirmDeleteBtn" disabled>Delete project</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <script src="../js/projects.js"></script>
+</body>
+</html>
